@@ -4,6 +4,21 @@ import { provaPaulista2025, provaPaulista2026, provaDiagnostica2026, progression
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { TrendingUp, TrendingDown, Minus } from "lucide-react";
 
+// Normalize turma names for matching (handles º/ª differences)
+function normalizeTurma(t: string): string {
+  return t.trim().replace(/[ºª]/g, "").toLowerCase();
+}
+
+const turmaOrder = [
+  "1ª SERIE A",
+  "1ª SERIE B",
+  "1ª SERIE C",
+  "2ª TEC Logística",
+  "2ª SERIE B",
+  "3ª SERIE A",
+  "3º TEC Desenvolvimento de Sistemas",
+];
+
 export function PerformanceTable() {
   const rows = provaPaulista2026.map((pp26) => {
     const mapping = progressionMappings.find((m) => m.turma2026 === pp26.turma);
@@ -21,7 +36,7 @@ export function PerformanceTable() {
       }
     }
 
-    const diag = provaDiagnostica2026.find((d) => d.turma === pp26.turma);
+    const diag = provaDiagnostica2026.find((d) => normalizeTurma(d.turma) === normalizeTurma(pp26.turma));
     const diff = acertos2025 !== null ? pp26.acertos - acertos2025 : null;
 
     return {
@@ -36,8 +51,12 @@ export function PerformanceTable() {
     };
   });
 
-  // Sort by acertos descending
-  rows.sort((a, b) => b.acertos2026 - a.acertos2026);
+  // Sort by custom order
+  rows.sort((a, b) => {
+    const ia = turmaOrder.indexOf(a.turma);
+    const ib = turmaOrder.indexOf(b.turma);
+    return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib);
+  });
 
   return (
     <Card className="border-0 shadow-sm">
