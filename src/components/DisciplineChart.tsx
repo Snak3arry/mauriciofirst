@@ -106,8 +106,8 @@ export function DisciplineChart({ selectedTurma }: { selectedTurma: string | nul
               <Legend
                 formatter={(value: string) => (value === "acertos2025" ? "Prova Paulista 2025" : "Prova Paulista 2026")}
               />
-              <Bar dataKey="acertos2025" fill="oklch(0.65 0.15 200)" radius={[0, 4, 4, 0]} name="acertos2025" />
-              <Bar dataKey="acertos2026" fill="oklch(0.45 0.18 250)" radius={[0, 4, 4, 0]} name="acertos2026" />
+              <Bar dataKey="acertos2025" fill="oklch(0.45 0.18 250)" radius={[0, 4, 4, 0]} name="acertos2025" />
+              <Bar dataKey="acertos2026" fill="oklch(0.55 0.15 160)" radius={[0, 4, 4, 0]} name="acertos2026" />
             </BarChart>
           </ResponsiveContainer>
         </div>
