@@ -2,13 +2,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { provaPaulista2026, provaDiagnostica2026 } from "@/data/examData";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
-// Map diagnostic discipline names to Paulista names
-const diagToP: Record<string, string> = {
-  LPT: "PORT",
-  HIS: "HIST",
-  FIS: "FÍS",
-  FIL: "FILO",
-};
+// Normalize turma names for matching (handles º/ª differences)
+function normalizeTurma(t: string): string {
+  return t.trim().replace(/[ºª]/g, "").toLowerCase();
+}
 
 export function DiagnosticChart({ selectedTurma }: { selectedTurma: string | null }) {
   const turmas = selectedTurma
@@ -16,7 +13,7 @@ export function DiagnosticChart({ selectedTurma }: { selectedTurma: string | nul
     : provaPaulista2026;
 
   const data = turmas.map((pp) => {
-    const diag = provaDiagnostica2026.find((d) => d.turma === pp.turma);
+    const diag = provaDiagnostica2026.find((d) => normalizeTurma(d.turma) === normalizeTurma(pp.turma));
     return {
       turma: pp.turma,
       "Diagnóstica 2026": diag ? +(diag.notaMedia * 100).toFixed(1) : 0,
