@@ -96,7 +96,7 @@ export function DisciplineChart({ selectedTurma }: { selectedTurma: string | nul
         <p className="text-sm text-muted-foreground">Prova Paulista 2025 vs 2026</p>
       </CardHeader>
       <CardContent>
-        <div className="h-[400px]">
+        <div style={{ height: Math.max(400, data.length * 45) }}>
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={data} layout="vertical" margin={{ left: 80 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
