@@ -48,7 +48,7 @@ export function DisciplineChart({ selectedTurma }: { selectedTurma: string | nul
               <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
               <XAxis type="number" tick={{ fontSize: 12 }} tickFormatter={(v) => `${v}%`} domain={[0, 100]} />
               <YAxis type="category" dataKey="disciplina" tick={{ fontSize: 12 }} width={55} />
-              <Tooltip formatter={(v: number) => `${v}%`} />
+              <Tooltip formatter={(v: any) => `${v}%`} />
               <Bar dataKey="acertos" fill="oklch(0.45 0.18 250)" radius={[0, 4, 4, 0]} />
             </BarChart>
           </ResponsiveContainer>

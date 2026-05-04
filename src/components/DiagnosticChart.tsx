@@ -37,7 +37,7 @@ export function DiagnosticChart({ selectedTurma }: { selectedTurma: string | nul
               <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
               <XAxis dataKey="turma" tick={{ fontSize: 11 }} angle={-15} textAnchor="end" height={60} />
               <YAxis tick={{ fontSize: 12 }} tickFormatter={(v) => `${v}%`} domain={[0, 100]} />
-              <Tooltip formatter={(v: number) => `${v}%`} />
+              <Tooltip formatter={(v: any) => `${v}%`} />
               <Legend />
               <Bar dataKey="Diagnóstica 2026" fill="oklch(0.65 0.2 45)" radius={[4, 4, 0, 0]} />
               <Bar dataKey="Paulista 2026" fill="oklch(0.55 0.15 160)" radius={[4, 4, 0, 0]} />
