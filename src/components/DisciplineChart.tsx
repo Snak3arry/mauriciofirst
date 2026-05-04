@@ -102,7 +102,7 @@ export function DisciplineChart({ selectedTurma }: { selectedTurma: string | nul
               <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
               <XAxis type="number" tick={{ fontSize: 12 }} tickFormatter={(v) => `${v}%`} domain={[0, 100]} />
               <YAxis type="category" dataKey="disciplina" tick={{ fontSize: 12 }} width={70} />
-              <Tooltip formatter={(v: any, name: string) => [`${v}%`, name === "acertos2025" ? "2025" : "2026"]} />
+              <Tooltip formatter={(v: any, name: any) => [`${v}%`, name === "acertos2025" ? "2025" : "2026"]} />
               <Legend
                 formatter={(value: string) => (value === "acertos2025" ? "Prova Paulista 2025" : "Prova Paulista 2026")}
               />
